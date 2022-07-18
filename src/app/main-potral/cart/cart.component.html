@@ -1,0 +1,53 @@
+<ng-container *ngIf="products.length !=0">
+    <h3 class="text-center my-4">Your Cart</h3>
+    <div class="mx-4 mt-5">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total</th>
+            <th scope="col">Remove</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of products, let i = index">
+            <th scope="row">{{i+1}}</th>
+            <td><img src="{{item.image}}" alt="" style="height:60px; width:50px;"></td>
+            <td>{{item.title}}</td>
+            <td>${{item.price}}</td>
+            <td>{{item.quantity}}</td>
+            <td>${{item.total}}</td>
+            <td ><button (click)="removeProducts(item)"><i class="bi bi-trash3-fill"></i></button></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3"></td>
+            <td><button (click)="removeAllProducts()" class="btn btn-danger">Empty Cart</button></td>
+            <td><button class="btn btn-warning" routerLink="/products">Shop More</button></td>
+            <td><button class="btn btn-success">Check out</button></td>
+            <td><strong>GrandTotal: {{allProducts}}</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="products.length ==0">
+<div class="container py-4">
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid">
+            <h3 class="fw-bold mt-0 mb-5">Your Cart</h3>
+            <div class="text-center mt-5">
+                <p class=" text-center"><strong>Your Cart is Empty</strong> <br> Add item to it Now</p>
+                <button class="btn btn-primary btn-sm" type="button" routerLink="/products">Shop Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+</ng-container>
